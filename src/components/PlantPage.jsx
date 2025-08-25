@@ -1,14 +1,19 @@
 import React from "react";
 import NewPlantForm from "./NewPlantForm";
-import PlantList from "./PlantList";
 import Search from "./Search";
+import PlantList from "./PlantList";
 
-function PlantPage() {
+function PlantPage({ plants, addPlant, handleSoldOut, search, setSearch }) {
   return (
     <main>
-      <NewPlantForm />
-      <Search />
-      <PlantList />
+      <NewPlantForm addPlant={addPlant} />
+      <Search search={search} setSearch={setSearch} />
+      <PlantList
+        plants={plants.filter(plant =>
+          plant.name.toLowerCase().includes(search.toLowerCase())
+        )}
+        handleSoldOut={handleSoldOut}
+      />
     </main>
   );
 }
